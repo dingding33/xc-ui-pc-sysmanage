@@ -1,6 +1,20 @@
 <template>
  <div>
-  <el-button type="primary" size="small" v-on:click="query">查询</el-button>
+   <!-- 查询表单 -->
+   <el-form :model="params">
+      <el-select v-model="params.siteId" placeholder="请选择站点">
+        <el-option v-for="item in siteList"
+        :key="item.siteId"
+        :label="item.siteName"
+        :value="item.siteId">
+        </el-option>
+      </el-select>
+      页面别名：<el-input v-model="params.pageAliase" style="width:100px"></el-input>
+      <el-button type="primary" size="small" v-on:click="query">查询</el-button>
+      <router-link class="mui-tab-item" :to="{path:'/cms/page/add/'}">
+        <el-button type="primary" size="small">新增页面</el-button>
+      </router-link>
+   </el-form>
     <el-table
       :data="list"
       style="width: 100%">
@@ -27,9 +41,12 @@
     export default {
       data() {
         return {
+          siteList:[],
           list: [],
             total:0,
             params:{
+              siteId:'',
+              pageAliase:'',
               page:1,
               size:10
             }
@@ -39,7 +56,7 @@
           query:function(){
             // alert('查询')
             //调用服务端的接口
-            cmsApi.page_list(this.params.page,this.params.size).then((res)=>{
+            cmsApi.page_list(this.params.page,this.params.size,this.params).then((res)=>{
               //将res结果数据赋值给数据模型对象
               this.list = res.queryResult.list;
               this.total = res.queryResult.total;
@@ -56,6 +73,16 @@
         mounted(){
           //当DOM元素渲染完成后调用query
           this.query()
+          // 初始化站点列表
+          this.siteList = [
+            {
+              siteId:'5a751fab6abb5044e0d19ea1',
+              siteName:'门户主站'
+            },{
+              siteId:'102',
+              siteName:'测试站'
+            }
+          ]
         }
     }
   </script>
