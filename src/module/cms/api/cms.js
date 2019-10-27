@@ -10,7 +10,10 @@ export const page_add = params => {
   return http.requestPost(apiUrl+'/cms/page/add',params)
 }
 export const page_get = id => {
-  return http.requestQuickGet(apiUrl+'/cms/page/get/',id)
+  return http.requestQuickGet(apiUrl+'/cms/page/get/'+id)
+}
+export const page_del = id => {
+  return http.requestDelete(apiUrl+'/cms/page/del/'+id)
 }
 export const page_edit = (id,params) => {
   return http.requestPut(apiUrl+'/cms/page/edit/'+id,params)

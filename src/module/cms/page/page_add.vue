@@ -108,6 +108,8 @@
                   this.$message.success("提交成功")
                   //将表单清空
                   this.$refs['pageForm'].resetFields();
+                  //返回
+                  this.go_back();
                 }else if(res.message){
                   this.$message.error(res.message)
                 }else{
