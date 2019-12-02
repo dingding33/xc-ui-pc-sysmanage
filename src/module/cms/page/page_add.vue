@@ -31,11 +31,12 @@
     <el-form-item label="访问路径" prop="pageWebPath">
       <el-input v-model="pageForm.pageWebPath" auto-complete="off" ></el-input>
     </el-form-item>
-
     <el-form-item label="物理路径" prop="pagePhysicalPath">
       <el-input v-model="pageForm.pagePhysicalPath" auto-complete="off" ></el-input>
     </el-form-item>
-
+    <el-form-item label="数据URL" prop="dataUrl">
+      <el-input v-model="pageForm.dataUrl" auto-complete="off"/>
+    </el-form-item>
     <el-form-item label="类型">
       <el-radio-group v-model="pageForm.pageType">
         <el-radio class="radio" label="0">静态</el-radio>
@@ -67,11 +68,13 @@
           pageName: '',
           pageAliase: '',
           pageWebPath: '',
+          dataUrl: '',
           pageParameter:'',
           pagePhysicalPath:'',
           pageType:'',
           pageCreateTime: new Date()
         },
+        // 表单验证规则
         pageFormRules: {
           siteId:[
             {required: true, message: '请选择站点', trigger: 'blur'}

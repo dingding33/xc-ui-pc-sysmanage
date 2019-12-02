@@ -39,9 +39,9 @@
           <template slot-scope="scope">
             <el-button size="small" type="primary" @click="edit(scope.row.pageId)">编辑</el-button>
             <el-button size="small" type="danger"  @click="del(scope.row.pageId)">删除</el-button>
-            <el-button size="small" type="primary"  @click="del(scope.row.pageId)">静态化</el-button>
-            <el-button size="small" type="primary"  @click="del(scope.row.pageId)">页面预览</el-button>
-            <el-button size="small" type="primary"  @click="del(scope.row.pageId)">页面发布</el-button>
+            <el-button size="small" type="primary"  @click="tohtml(scope.row.pageId)">静态化</el-button>
+            <el-button size="small" type="primary"  @click="preview(scope.row.pageId)">页面预览</el-button>
+            <el-button size="small" type="primary"  @click="preview(scope.row.pageId)">页面发布</el-button>
           </template>
         </el-table-column>
     </el-table>
@@ -84,6 +84,7 @@
           })
 
         },
+        // 分页查询方法
         changePage:function(page){//形参就是当前页码
           //调用query方法
           this.params.page = page;

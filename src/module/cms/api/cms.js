@@ -1,3 +1,4 @@
+// public 是axios工具类的封装，定义了http请求方法
 import http from './../../../base/api/public'
 import querystring from 'querystring'
 let sysConfig = require('@/../config/sysConfig')
